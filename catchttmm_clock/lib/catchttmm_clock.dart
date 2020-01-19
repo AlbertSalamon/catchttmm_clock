@@ -57,7 +57,7 @@ class _DigitalClockState extends State<DigitalClock> {
       dotsColor = 0xff7109AA;
     } else if (_dateTime.hour >= 18 && _dateTime.hour < 21) {
       dotsColor = 0xff00A21C;
-    } else if (_dateTime.hour >= 21) {
+    } else if (_dateTime.hour >= 21 || _dateTime.hour < 3) {
       dotsColor = 0xff0026CA;
     }
 
@@ -69,6 +69,11 @@ class _DigitalClockState extends State<DigitalClock> {
 
     double diagonal = 4;
     bool tenLine = false;
+    int actualHour = _dateTime.hour % 12;
+
+    if ( actualHour == 0 ){
+      actualHour = 12;
+    }
 
     if (type == 's') {
       for (var i = from; i <= from + 9; i++) {
@@ -88,8 +93,9 @@ class _DigitalClockState extends State<DigitalClock> {
         }
       }
     } else {
+
       for (var i = from + 5; i >= from; i--) {
-        diagonal = _dateTime.hour % 12 >= i ? 20 : 4;
+        diagonal = actualHour >= i ? 20 : 4;
         childs.add(Dot(
           dotPosition: i,
           dotColor: type == 's' ? getColor() : _defaultColor,

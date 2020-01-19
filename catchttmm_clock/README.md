@@ -1,6 +1,1 @@
-# Catchttmm_clock
-
-Designed by Albert Salomon
-Coded by Piotr Kamiński
-
-
+Created by Albert Salomon & Piotr Kamiński
