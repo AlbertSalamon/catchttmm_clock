@@ -22,5 +22,5 @@ Today we determine time by referring to the sun, hence the designation AM or PM.
 Catch the time!
 
 Credits:
-Design by Albert Salamon
+Design by Albert Salamon,
 Programing by Piotr Kamiński
