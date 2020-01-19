@@ -21,4 +21,4 @@ Catch the time!
 
 Credits:
 Design by Albert Salamon
-Programing by Piotr Kamiński
+Programing by Piotr Kamiński
