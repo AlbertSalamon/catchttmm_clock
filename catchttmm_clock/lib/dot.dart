@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 
 class Dot extends StatelessWidget {
   final int dotColor;
-  final int dotPosition;
   final double diagonal;
-  final String dotType;
   final bool line;
 
   Dot(
       {@required this.dotColor,
-      @required this.dotPosition,
       @required this.diagonal,
-      @required this.dotType,
       @required this.line});
 
   @override

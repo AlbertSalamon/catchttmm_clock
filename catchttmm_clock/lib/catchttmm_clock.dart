@@ -64,26 +64,40 @@ class _DigitalClockState extends State<DigitalClock> {
     return dotsColor;
   }
 
-  List<Widget> getHoursDots(String type, int from, {bool last = false}) {
+  List<Widget> getHoursDots( int from ) {
     List<Widget> childs = [];
 
     double diagonal = 4;
-    bool tenLine = false;
     int actualHour = _dateTime.hour % 12;
 
     if ( actualHour == 0 ){
       actualHour = 12;
     }
 
-    if (type == 's') {
+      for (var i = from + 5; i >= from; i--) {
+        diagonal = actualHour >= i ? 20 : 4;
+        childs.add(Dot(
+          dotColor: _defaultColor,
+          diagonal: diagonal,
+          line: false,
+        ));
+      }
+
+    return childs;
+  }
+
+  List<Widget> getMinutesDots( int from ) {
+    List<Widget> childs = [];
+
+    double diagonal = 4;
+    bool tenLine = false;
+
       for (var i = from; i <= from + 9; i++) {
         diagonal = _dateTime.minute >= i ? 20 : 4;
         tenLine = _dateTime.minute >= from + 9 ? true : false;
 
         childs.add(Dot(
-          dotPosition: i,
-          dotColor: type == 's' ? getColor() : _defaultColor,
-          dotType: type,
+          dotColor: getColor(),
           diagonal: diagonal,
           line: tenLine,
         ));
@@ -92,19 +106,7 @@ class _DigitalClockState extends State<DigitalClock> {
           break;
         }
       }
-    } else {
 
-      for (var i = from + 5; i >= from; i--) {
-        diagonal = actualHour >= i ? 20 : 4;
-        childs.add(Dot(
-          dotPosition: i,
-          dotColor: type == 's' ? getColor() : _defaultColor,
-          dotType: type,
-          diagonal: diagonal,
-          line: false,
-        ));
-      }
-    }
 
     return childs;
   }
@@ -112,11 +114,11 @@ class _DigitalClockState extends State<DigitalClock> {
   List<Widget> getHours() {
     List<Widget> hoursDots = [];
 
-    for (var i = 1; i <= 6; i += 5) {
+    for (var i = 1; i <= 7; i += 6) {
       hoursDots.add(Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: getHoursDots('h', i),
+        children: getHoursDots(i),
       ));
     }
     return hoursDots;
@@ -129,7 +131,7 @@ class _DigitalClockState extends State<DigitalClock> {
       secondsDots.add(Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: getHoursDots('s', i),
+        children: getMinutesDots(i),
       ));
     }
     return secondsDots;
